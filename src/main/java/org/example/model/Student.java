@@ -1,24 +1,24 @@
-package org.example;
+package org.example.model;
 
 public class Student {
-    private String studentID;
+    private int studentID;
     private String studentName;
     private String program;
 
     public Student(){
 
     }
-    public Student (String studentID, String studentName, String program){
+    public Student (int studentID, String studentName, String program){
         this.studentID = studentID;
         this.studentName = studentName;
         this.program = program;
 
     }
-    public String getStudentID(){
+    public int getStudentID(){
         return studentID;
     }
 
-    public void setStudentID(String studentID) {
+    public void setStudentID(int studentID) {
         this.studentID = studentID;
     }
 
