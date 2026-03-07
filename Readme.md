@@ -10,5 +10,5 @@ Author: Trish Lorraine Titular
 
 **Inheritance**
 
-![Inheritance Instructor.png](src/main/resources/images/Inheritance Instructor.png)
+![](src/main/resources/images/Inheritance Instructor.png)
 
