@@ -11,26 +11,14 @@ public class Main {
 
     public static void main(String[] args) {
 
-        Student stud = new Student();
-        Student stud1 = new Student();
-
-        stud.setStudentID("00123");
-        stud.setStudentName("John Doe");
-        stud.setProgram("Information Technology");
-
-        stud1.setStudentID("00124");
-        stud1.setStudentName("Jane Doe");
-        stud1.setProgram("Information Technology");
-
         Course cour = new Course();
 
         cour.setCourseID("001");
         cour.setCourseName("Integrative Programming");
         cour.setProgram("Information Technology");
 
-        stud.display();
-        stud1.display();
         cour.display();
+
         Scanner scanner = new Scanner(System.in);
         ServiceRegistration serviceRegistration = new ServiceRegistration();
         CourseRegistration courseRegistration = new CourseRegistration();
@@ -42,7 +30,7 @@ public class Main {
             System.out.println("[2] Display Student");
             System.out.println("[3] Update Student");
             System.out.println("[4] Remove Student");
-            System.out.print("Enter Student: ");
+            System.out.print("Enter Choice: ");
 
             choice = scanner.nextInt();
             scanner.nextLine();
@@ -60,7 +48,11 @@ public class Main {
                     System.out.print("Enter Program: ");
                     String program = scanner.nextLine();
 
-                    Student student = new Student(studentID, studentName, program);
+                    Student student = new Student();
+
+                    student.getPersonID();
+                    student.setPersonName(studentName);
+                    student.setProgram(program);
                     serviceRegistration.saveStudent(student);
                     break;
 
@@ -72,7 +64,5 @@ public class Main {
         } while (choice != 4);
 
         scanner.close();
-
-
     }
 }

@@ -7,3 +7,7 @@ Author: Trish Lorraine Titular
 
 
 ![](src/main/resources/images/OOPEncapOutput.png)
+
+**Inheritance**
+![Inheritance Instructor.png](target/classes/images/Inheritance%20Instructor.png)
+
