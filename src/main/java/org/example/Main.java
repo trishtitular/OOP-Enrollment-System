@@ -1,6 +1,8 @@
 package org.example;
 
+import org.example.model.Cat;
 import org.example.model.Course;
+import org.example.model.Dog;
 import org.example.model.Student;
 import org.example.service.CourseRegistration;
 import org.example.service.ServiceRegistration;
@@ -9,6 +11,18 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
+
+        Dog dog = new Dog(2,"Yuki");
+        System.out.println(dog.getName());
+        System.out.println(dog.getAge());
+        System.out.println(dog.getFAVORITE_FOOD());
+        dog.makeSound();
+
+        Cat cat = new Cat(2, "Muning");
+        System.out.println(cat.getName());
+        System.out.println(cat.getAge());
+        System.out.println(cat.life);
+        cat.makeSound();
 
         /*Student stud = new Student();
         Student stud1 = new Student();
@@ -30,11 +44,11 @@ public class Main {
         stud.display();
         stud1.display();
         cour.display();*/
-        Scanner scanner = new Scanner(System.in);
+       /* Scanner scanner = new Scanner(System.in);
         ServiceRegistration serviceRegistration = new ServiceRegistration();
         CourseRegistration courseRegistration = new CourseRegistration();
-
-        int choice = 0;
+*/
+        /*int choice = 0;
 
         do {
             System.out.println("\n[1] Save Student");
@@ -70,7 +84,8 @@ public class Main {
 
         } while (choice != 4);
 
-        scanner.close();
+        scanner.close();*/
+
 
     }
 }
