@@ -9,5 +9,6 @@ Author: Trish Lorraine Titular
 ![](src/main/resources/images/OOPEncapOutput.png)
 
 **Inheritance**
+
 ![Inheritance Instructor.png](src/main/resources/images/Inheritance Instructor.png)
 
