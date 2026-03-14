@@ -13,3 +13,11 @@ Author: Trish Lorraine Titular
 inheritance
 ![](src/main/resources/images/InheritanceInstructor.png)
 
+**Abstraction**
+
+Person Abstraction
+![personAbstraction.png](src/main/resources/images/personAbstraction.png)
+Instructor Abstraction
+![instructorAbstraction.png](src/main/resources/images/instructorAbstraction.png)
+Student Abstraction
+![studentAbstraction.png](src/main/resources/images/studentAbstraction.png)
