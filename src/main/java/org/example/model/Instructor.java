@@ -10,5 +10,9 @@ public class Instructor extends Person {
     public void setCourses(){
         this.Courses = Courses;
     }
+    @Override
+    public void mainTask(){
+        System.out.println("Instructor Details");
+    }
 
 }
