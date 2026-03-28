@@ -2,8 +2,9 @@ package org.example;
 
 import org.example.model.Course;
 import org.example.model.Student;
+import org.example.service.CampusRegistrar;
 import org.example.service.CourseRegistration;
-import org.example.service.ServiceRegistration;
+import org.example.service.StudentRegistration;
 
 import java.util.Scanner;
 
@@ -20,8 +21,7 @@ public class Main {
         cour.display();
 
         Scanner scanner = new Scanner(System.in);
-        ServiceRegistration serviceRegistration = new ServiceRegistration();
-        CourseRegistration courseRegistration = new CourseRegistration();
+        CampusRegistrar campusRegistrar = new CampusRegistrar(new StudentRegistration(), new CourseRegistration());
 
         int choice = 0;
 
@@ -53,11 +53,11 @@ public class Main {
                     student.getPersonID();
                     student.setPersonName(studentName);
                     student.setProgram(program);
-                    serviceRegistration.saveStudent(student);
+                    campusRegistrar.saveStudent(student);
                     break;
 
                 case 2:
-                    serviceRegistration.displayAllStudent();
+                    campusRegistrar.displayAllStudent();
                     break;
             }
 
