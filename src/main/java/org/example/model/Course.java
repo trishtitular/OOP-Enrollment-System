@@ -23,22 +23,18 @@ public class Course {
     public String getCourseName() {
         return courseName;
     }
-
     public void setCourseName(String courseName) {
         this.courseName = courseName;
     }
-
     public String getCourseProgram() {
         return courseProgram;
     }
     public void setCourseProgram(String courseProgram) {
         this.courseProgram = courseProgram;
     }
-
     public int getUnits() {
         return units;
     }
-
     public void setUnits(int units) {
         this.units = units;
     }

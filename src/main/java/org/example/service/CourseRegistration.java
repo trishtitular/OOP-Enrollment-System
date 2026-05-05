@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public class CourseRegistration implements CourseReg{
     private final ArrayList<Course> courseLists = new ArrayList<>();
-
+    // allow to add course
     @Override
     public void saveCourse(Course course){
         courseLists.add(course);
@@ -39,5 +39,5 @@ public class CourseRegistration implements CourseReg{
             }
         }
     }
-
+    // get all course
 }

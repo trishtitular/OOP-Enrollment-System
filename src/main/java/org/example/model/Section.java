@@ -20,7 +20,7 @@ public class Section {
         return sectionName;
     }
 
-    public void setSectionName(){
+    public void setSectionName(String sectionName){
         this.sectionName = sectionName;
     }
 
@@ -58,13 +58,13 @@ public class Section {
     public void displaySection() {
         System.out.println("Section: " + sectionName);
 
+        System.out.println("Instructor: " + (instructorAssigned != null ? instructorAssigned.getPersonName() : "Pending"));
+
         if (course != null) {
             System.out.println("Course: " + course.getCourseName() + " (" + course.getCourseID() + ")");
         } else {
-            System.out.println("Course: TBA");
+            System.out.println("Course: Pending");
         }
-
-        System.out.println("Instructor: " + (instructorAssigned != null ? instructorAssigned.getPersonName() : "TBA"));
 
         System.out.println("Total Students: " + studentList.size() + "/" + maxCapacity);
         if (studentList.isEmpty()) {
@@ -77,5 +77,9 @@ public class Section {
             System.out.println();
         }
         System.out.println("-----------------------------------");
+    }
+    @Override
+    public String toString() {
+        return sectionName + " [" + studentList.size() + "/" + maxCapacity + "]";
     }
 }

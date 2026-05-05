@@ -1,6 +1,6 @@
 package org.example.model;
 
-//tuitionDetails to tuitioDeets
+
 public class Student extends Person {
     private String program;
     private TuitionFeePayment tuitionDeets;
@@ -37,7 +37,7 @@ public class Student extends Person {
 
     @Override
     public void mainTask(){
-        System.out.println("Student New Knowledge ");
+        System.out.println("Student New Knowledge");
     }
 
 }

@@ -28,7 +28,7 @@ public class Department {
         return  departmentName;
     }
 
-    public void setDepartmentName(){
+    public void setDepartmentName(String DepartmentName){
         this.departmentName = departmentName;
     }
 
@@ -47,11 +47,29 @@ public class Department {
         this.sectionList = sectionList;
     }
 
-    public void displayDepartment(){
-        System.out.println("Department ID: " + getDepartmentID());
-        System.out.println("Department Name: " + getDepartmentName());
-        System.out.println("List of Instructors: " + getInstructorList());
-        System.out.println("List of Sections: " + getSectionList() + "\n");
+    public void displayDepartment() {
+        System.out.println("\n========================================");
+        System.out.println("DEPARTMENT REPORT: " + getDepartmentName() + " (ID: " + getDepartmentID() + ")");
+        System.out.println("========================================");
+
+        System.out.println("Faculty Members:");
+        if (instructorList == null || instructorList.isEmpty()) {
+            System.out.println("   - No instructors assigned.");
+        } else {
+            for (Instructor ins : instructorList) {
+                System.out.println("   • Prof. " + ins.getPersonName());
+            }
+        }
+
+        System.out.println("\nManaged Sections:");
+        if (sectionList == null || sectionList.isEmpty()) {
+            System.out.println("   - No sections registered.");
+        } else {
+            for (Section sec : sectionList) {
+                System.out.println("   • " + sec.getSectionName() + " (" + sec.getStudentList().size() + " Students)");
+            }
+        }
+        System.out.println("========================================\n");
     }
     @Override
     public String toString(){
