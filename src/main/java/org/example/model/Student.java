@@ -1,23 +1,43 @@
 package org.example.model;
 
+//tuitionDetails to tuitioDeets
 public class Student extends Person {
     private String program;
+    private TuitionFeePayment tuitionDeets;
 
-    public Student(){
-
-    }
-    public Student(String program){
+    public Student(String PersonName, String PersonID, String program){
+        super(PersonName, PersonID);
         this.program = program;
+        this.tuitionDeets = new TuitionFeePayment(0);
     }
+
     public String getProgram(){
         return program;
     }
-    public void setProgram(String Program){
+    public void setProgram(String program) {
         this.program = program;
+    }
+
+    public String getPersonName() {
+        return super.getPersonName();
+    }
+
+    public void setPersonName(String personName){
+        super.setPersonName(personName);
+    }
+    public TuitionFeePayment getTuitionDeets(){
+        return tuitionDeets;
+    }
+
+    public void displayStudent(){
+        System.out.println("Student ID: " + getPersonID());
+        System.out.println("Student Name: " + getPersonName());
+        System.out.println("Program: " + getProgram() + "\n");
     }
 
     @Override
     public void mainTask(){
-        System.out.println("Student Enrolled");
+        System.out.println("Student New Knowledge ");
     }
+
 }

@@ -2,31 +2,31 @@ package org.example.model;
 
 public abstract class Person {
 
-    private String personID;
-    private String personName;
+    private String PersonID;
+    private String PersonName;
 
-    public Person(String personID, String personName){
-        this.personID = personID;
-        this.personName = personName;
+    public Person(String PersonID, String PersonName){
+        this.PersonID = PersonID;
+        this.PersonName = PersonName;
     }
 
     public Person(){
     }
 
     public String getPersonID(){
-        return personID;
+        return PersonID;
     }
 
-    public void setPersonID(String personID){
-        this.personID = personID;
+    public void setPersonID(String PersonID){
+        this.PersonID = PersonID;
     }
 
     public String getPersonName(){
-        return personName;
+        return PersonName;
     }
 
     public void setPersonName(String personName){
-        this.personName = personName;
+        this.PersonName = PersonName;
     }
 
     public abstract void mainTask();

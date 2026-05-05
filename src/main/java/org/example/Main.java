@@ -59,6 +59,10 @@ public class Main {
                 case 2:
                     campusRegistrar.displayAllStudent();
                     break;
+
+
+
+
             }
 
         } while (choice != 4);

@@ -4,8 +4,8 @@ import org.example.model.Course;
 import org.example.model.Student;
 
 public class CampusRegistrar {
-    private StudentReg studentRegistration;
-    private CourseReg courseRegistration;
+    private final StudentReg studentRegistration;
+    private final CourseReg courseRegistration;
 
     public CampusRegistrar(StudentReg studentRegistration, CourseReg courseRegistration){
 

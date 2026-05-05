@@ -1,18 +1,34 @@
 package org.example.model;
 
 public class Instructor extends Person {
-    private String Courses;
+    private String courses;
+
+    public Instructor (String PersonName, String PersonID, String courses){
+        super (PersonName, PersonID);
+        this.courses = courses;
+    }
 
     public String getCourses(){
-        return Courses;
+        return courses;
     }
 
-    public void setCourses(){
-        this.Courses = Courses;
+    public void setCourses(String courses){
+        this.courses = courses;
+
     }
+
     @Override
     public void mainTask(){
-        System.out.println("Instructor Details");
+        System.out.println(getPersonName() + "is an instructor who is assigned to: " + courses);
+    }
+
+    @Override
+    public String toString(){
+        return "Instructor{" +
+                "Name='" + getPersonName() + '\'' +
+                ", ID='" + getPersonID() + '\'' +
+                ", Courses='" + courses + '\'' +
+                '}';
     }
 
 }

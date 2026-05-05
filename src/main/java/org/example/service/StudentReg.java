@@ -7,5 +7,4 @@ public interface StudentReg {
     void displayAllStudent();
     void updateStudent (Student student);
     void removeStudent(Student student);
-
 }
