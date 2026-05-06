@@ -31,5 +31,14 @@ public class DepartmentRegistration implements DepartmentReg{
         return this.departments;
     }
 
+    @Override
+    public Department findByDepartmentID(String id){
+        for (Department d: departments){
+            if(d.getDepartmentID().equalsIgnoreCase(id)){
+                return d;
+            }
+        }
+        return null;
+    }
 }
 

@@ -3,7 +3,7 @@ package org.example.service;
 import org.example.model.*;
 import java.util.*;
 
-public class EnrollmentServiceRegistration implements EnrollmentRegService{
+public class EnrollmentServiceRegistration implements EnrollmentServiceReg {
 
     @Override
     public void registerStudentInSection(Section section, Student student) {
@@ -68,8 +68,5 @@ public class EnrollmentServiceRegistration implements EnrollmentRegService{
         }
         System.out.println("\n=============================================");
     }
-
-
-
 
 }

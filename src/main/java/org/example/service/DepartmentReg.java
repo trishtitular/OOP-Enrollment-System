@@ -6,5 +6,6 @@ import java.util.*;
 public interface DepartmentReg {
     void saveDepartment(Department department);
     List<Department> displayAll();
+    Department findByDepartmentID(String id);
 
 }

@@ -5,7 +5,7 @@ import java.util.*;
 
 public class TuitionFeeRegistration implements TuitionFeeReg{
 
-    private final double PRICE_PER_UNIT = 1350.0;
+    public static final double PRICE_PER_UNIT = 1350.0;
 
     public double getPRICE_PER_UNIT(){
         return PRICE_PER_UNIT;
@@ -21,13 +21,20 @@ public class TuitionFeeRegistration implements TuitionFeeReg{
     }
 
     @Override
-    public void payNow(Student student, double amount) {
+    public void processPayment(Student student, double amount) {
         double remainingBalance =student.getTuitionDeets().getBalance();
         student.getTuitionDeets().setBalance(remainingBalance - amount);
 
         System.out.println("==================================================");
         System.out.println("Transaction completed for: " + student.getPersonName());
         System.out.println("Remaining Balance: " + student.getTuitionDeets() + " Pesos");
+
+        if (student.getTuitionDeets().getBalance() <= 0){
+            int currentUnits = student.getTuitionDeets().getUnitsCompleted();
+            student.getTuitionDeets().setUnitsCompleted(currentUnits + 3);
+
+            System.out.println("STATUS: Payment Accredited. 3 units credited to record");
+        }
         System.out.println("==================================================");
     }
 

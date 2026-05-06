@@ -25,11 +25,9 @@ public class StudentRegistration extends Person implements StudentReg{
             System.out.println("No student records found");
         }
         for (Student s : studentLists) {
-            System.out.println("---------------------------");
             System.out.println("/nStudent ID: " + s.getPersonID());
             System.out.println("Student Name: " + s.getPersonName());
             System.out.println("Student Program: " + s.getProgram() + "\n");
-            System.out.println("---------------------------");
         }
     }
 // update student

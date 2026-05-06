@@ -3,6 +3,7 @@ package org.example.model;
 public class TuitionFeePayment {
     private double balance;
     private double totalTuitionFee;
+    private int unitsCompleted;
 
     public TuitionFeePayment(double balance){
         this.balance = balance;
@@ -24,4 +25,11 @@ public class TuitionFeePayment {
         this.totalTuitionFee = totalTuitionFee;
     }
 
+    public int getUnitsCompleted() {
+        return unitsCompleted;
+    }
+
+    public void setUnitsCompleted(int unitsCompleted) {
+        this.unitsCompleted = unitsCompleted;
+    }
 }
