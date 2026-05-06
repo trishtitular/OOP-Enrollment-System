@@ -80,6 +80,7 @@ public class Section {
     }
     @Override
     public String toString() {
+
         return sectionName + " [" + studentList.size() + "/" + maxCapacity + "]";
     }
 }
