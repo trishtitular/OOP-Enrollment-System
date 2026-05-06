@@ -10,6 +10,7 @@ import java.util.Scanner;
 
 public class Main {
 //TO DO: ReportingService
+    // StudentReg findByID -> findByStudentID
     public static void main(String[] args) {
 
         Course cour = new Course();

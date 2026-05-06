@@ -8,6 +8,6 @@ public interface CourseReg {
     void displayAll(double pricePerUnit);
     void updateCourse(Course updateCourse);
     void removeCourse(String courseID);
-    Course findByID(String id);
+    Course findByCourseID(String id);
 
 }

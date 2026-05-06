@@ -11,7 +11,7 @@ public class StudentRegistration extends Person implements StudentReg{
 
     @Override
     public void saveStudent(Student student) {
-        if (findByID(student.getPersonID()) == null) {
+        if (findByStudentID(student.getPersonID()) == null) {
             studentLists.add(student);
         } else {
             System.out.println("Error: Student ID " + student.getPersonID() + " exists already.");
@@ -54,7 +54,7 @@ public class StudentRegistration extends Person implements StudentReg{
         }
         return false;
     }
-    public Student findByID (String id){
+    public Student findByStudentID (String id){
         for (Student s : studentLists){
             if (s.getPersonID().equalsIgnoreCase(id)){
                 return s;

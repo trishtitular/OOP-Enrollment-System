@@ -47,12 +47,12 @@ public class CourseRegistration implements CourseReg{
             if (removed) {
                 System.out.println(courseID + " removed successfully");
             } else {
-                System.out.println("Error: Course ID" + courseID + " is not registered yet");
+                System.out.println("Error: " + courseID + " is not registered yet");
             }
         }
 
         @Override
-        public Course findByID(String id){
+        public Course findByCourseID(String id){
             for (Course c : courseLists){
                 if(c.getCourseID().equalsIgnoreCase(id)){
                     return c;

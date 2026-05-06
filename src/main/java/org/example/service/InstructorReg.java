@@ -6,7 +6,7 @@ import java.util.*;
 
 public interface InstructorReg {
     void save(Instructor instructor);
-    Instructor findByID(String id);
+    Instructor findByInstructorID(String id);
     List<Instructor> displayAll();
     void updateInstructor(String id, Instructor updated);
     void deleteInstructor(String id);

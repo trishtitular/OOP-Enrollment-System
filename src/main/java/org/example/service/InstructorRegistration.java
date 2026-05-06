@@ -15,7 +15,7 @@ public class InstructorRegistration implements InstructorReg {
     }
 
     @Override
-    public Instructor findByID(String id){
+    public Instructor findByInstructorID(String id){
         for (Instructor i : instructors){
             if (i.getPersonID().equalsIgnoreCase(id)){
                 return i;
