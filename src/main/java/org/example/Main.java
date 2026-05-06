@@ -57,6 +57,7 @@ public class Main {
             scan.nextLine();
 
             switch (choice){
+                // fix case 1 -> student name: student id record saved
                 case 1:
                     System.out.print("Enter Full Name: "); String studName = scan.nextLine();
                     System.out.print("Enter Student ID: "); String studId = scan.nextLine();
