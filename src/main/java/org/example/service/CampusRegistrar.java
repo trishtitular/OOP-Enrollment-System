@@ -19,13 +19,14 @@ public class CampusRegistrar {
 
     public CampusRegistrar(StudentReg studentRegistration, SectionReg sectionRegistration,
                            DepartmentReg departmentRegistration, CourseReg courseRegistration,
-                           TuitionFeeReg tuitionFeeRegistration, EnrollmentServiceReg enrollmentServiceRegistration) {
+                           TuitionFeeReg tuitionFeeRegistration, EnrollmentServiceReg enrollmentServiceRegistration,GraduationReg graduationRegis) {
         this.studentRegis = studentRegistration;
         this.sectionRegis = sectionRegistration;
         this.departmentRegis = departmentRegistration;
         this.courseRegis = courseRegistration;
         this.tuitionFeeRegis = tuitionFeeRegistration;
         this.enrollmentServiceRegis = enrollmentServiceRegistration;
+        this.graduationRegis = graduationRegis;
     }
 
     // --- STUDENT SERVICES ---

@@ -41,23 +41,22 @@ public class CourseRegistration implements CourseReg{
         }
         System.out.println("Error: Course ID is not registered yet");
     }
-        @Override
-        public void removeCourse(String courseID){
-            boolean removed = courseLists.removeIf(c -> c.getCourseID().equalsIgnoreCase(courseID));
+    @Override
+    public void removeCourse(String courseID){
+        boolean removed = courseLists.removeIf(c -> c.getCourseID().equalsIgnoreCase(courseID));
             if (removed) {
                 System.out.println(courseID + " removed successfully");
             } else {
                 System.out.println("Error: " + courseID + " is not registered yet");
             }
         }
-
-        @Override
-        public Course findByCourseID(String id){
-            for (Course c : courseLists){
-                if(c.getCourseID().equalsIgnoreCase(id)){
-                    return c;
-                }
-            }
-            return null;
+    @Override
+    public Course findByCourseID(String id){
+        for (Course c : courseLists){
+             if(c.getCourseID().equalsIgnoreCase(id)){
+             return c;
+             }
         }
+        return null;
+    }
 }
