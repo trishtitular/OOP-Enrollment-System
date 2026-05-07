@@ -34,6 +34,6 @@ public class TuitionFeePayment {
     }
     @Override
     public String toString(){
-        return String.format("Peso,.2f", balance);
+        return String.format("Peso %.2f", balance);
     }
 }
