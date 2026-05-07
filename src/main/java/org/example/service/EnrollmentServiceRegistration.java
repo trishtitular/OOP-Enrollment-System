@@ -36,10 +36,25 @@ public class EnrollmentServiceRegistration implements EnrollmentServiceReg {
     public void displayDepartmentHierarchy(List<Department> departments) {
         System.out.println("\n========== INSTITUTIONAL HIERARCHY ==========");
 
+        if (departments == null || departments.isEmpty()) {
+            System.out.println("Notice: No Departments found in registry.");
+            return;
+        }
+
         for (Department dept : departments) {
             System.out.println("\nDepartment: " + dept.getDepartmentName());
 
-            if (dept.getSectionList().isEmpty()) {
+            System.out.print("  └── Instructors: ");
+            if (dept.getInstructorList().isEmpty()) {
+                System.out.println("None assigned");
+            } else {
+                for (Instructor i : dept.getInstructorList()) {
+                    System.out.print(i.getPersonName() + " ");
+                }
+                System.out.println();
+            }
+
+            if (dept.getSectionList() == null || dept.getSectionList().isEmpty()) {
                 System.out.println("   └── (No sections assigned)");
                 continue;
             }
@@ -55,7 +70,7 @@ public class EnrollmentServiceRegistration implements EnrollmentServiceReg {
                             " (" + sec.getCourse().getCourseID() + ")");
                 }
 
-                if (sec.getStudentList().isEmpty()) {
+                if (sec.getStudentList() == null || sec.getStudentList().isEmpty()) {
                     System.out.println("       └── (No students enrolled)");
                 } else {
                     for (Student s : sec.getStudentList()) {
@@ -68,5 +83,4 @@ public class EnrollmentServiceRegistration implements EnrollmentServiceReg {
         }
         System.out.println("\n=============================================");
     }
-
 }

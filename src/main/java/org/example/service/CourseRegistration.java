@@ -13,7 +13,7 @@ public class CourseRegistration implements CourseReg{
     @Override
     public void saveCourse(Course course){
         courseLists.add(course);
-        System.out.println(course.getCourseName() + "registered successfully");
+        System.out.println(course.getCourseName() + " registered successfully");
     }
 
     @Override

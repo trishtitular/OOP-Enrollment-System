@@ -15,6 +15,7 @@ public class Main {
         SectionReg sectionService = new SectionRegistration();
         DepartmentReg departmentService = new DepartmentRegistration();
         CourseReg courseService = new CourseRegistration();
+        InstructorReg instructorService = new InstructorRegistration();
         TuitionFeeReg tuitionService = new TuitionFeeRegistration();
         EnrollmentServiceReg enrollmentService = new EnrollmentServiceRegistration();
         GraduationReg graduationService = new GraduationService();
@@ -24,14 +25,14 @@ public class Main {
                 sectionService,
                 departmentService,
                 courseService,
+                instructorService,
                 tuitionService,
                 enrollmentService,
                 graduationService
         );
-        MenuHandler ui = new MenuHandler(registrar, sectionService);
-
-
         Scanner scan = new Scanner (System.in);
+        MenuHandler ui = new MenuHandler(scan, registrar, sectionService, courseService, instructorService);
+
         boolean isRunning = true;
 
         System.out.println("=============================================");
@@ -39,30 +40,35 @@ public class Main {
         System.out.println("=============================================");
 
         while (isRunning){
-            System.out.println("/n--- MAIN MENU---");
+            System.out.println("\n--- MAIN MENU---");
             System.out.println("1. Register New Student");
             System.out.println("2. Display All Students");
-            System.out.println("3. Course Management (Add/View/Update/Remove");
-            System.out.println("4. Section Management (Add Section");
-            System.out.println("5. Enroll Student in Section");
-            System.out.println("6. Asses Tuition");
-            System.out.println("7. Process Tuition Payment");
-            System.out.println("8. Check Student Account and Balance");
+            System.out.println("3. Course Management (Add/View/Update//Display/Remove)");
+            System.out.println("4. Section Management (Add Section/View/Update/Display/Remove)");
+            System.out.println("5. Instructor Management(Register/Assign/View)");
+            System.out.println("6. Department Management");
+            System.out.println("7. Enroll Student in Section");
+            System.out.println("8. Tuition & Financial Management");
             System.out.println("9. Conduct Graduation Audit");
-            System.out.println("10. Institutional Hierarchy (Department Management)");
-            System.out.println("0. Exit");
+            System.out.println("10. Exit");
             System.out.print(" Select an option: ");
+
+            if (!scan.hasNextInt()) {
+                System.out.println("Invalid input. Please enter a main menu option number");
+                scan.nextLine();
+                continue;
+            }
 
             int choice = scan.nextInt();
             scan.nextLine();
 
             switch (choice){
-                // fix case 1 -> student name: student id record saved
+
                 case 1:
-                    System.out.print("Enter Full Name: "); String studName = scan.nextLine();
                     System.out.print("Enter Student ID: "); String studId = scan.nextLine();
+                    System.out.print("Enter Full Name: "); String studName = scan.nextLine();
                     System.out.print("Enter Program: "); String prog = scan.nextLine();
-                    registrar.saveStudent(new Student(studName, studId, prog));
+                    registrar.saveStudent(new Student(studId, studName, prog));
                     break;
 
                 case 2:
@@ -78,33 +84,23 @@ public class Main {
                     break;
 
                 case 5:
+                    ui.handleInstructorMenu();
+                    break;
+
+                case 6:
+                    ui.handleDeptMenu();
+                    break;
+
+                case 7:
                     System.out.print("Enter Student ID: ");
                     String enrollStudID = scan.nextLine();
                     System.out.print("Enter Section Name: ");
                     String targetSection = scan.nextLine();
                     registrar.enrollStudent(new Section(targetSection, 0,null, null), enrollStudID);
                     break;
-                case 6:
-                    System.out.print("Enter Student ID: "); String billId = scan.nextLine();
-                    System.out.print("Enter Units to add: "); int units = scan.nextInt();
-                    Student bStudent = studentService.findByStudentID(billId);
-                    if (bStudent != null) registrar.calculateTuitionFee(bStudent, units);
-                    else System.out.println("Error: Student record not found.");
-                    break;
-
-                case 7:
-                    System.out.print("Enter Student ID: ");
-                    String payID = scan.nextLine();
-                    System.out.print("Enter Amount:  ");
-                    double amount = scan.nextDouble();
-                    System.out.print(" Pesos");
-                    registrar.processPayment(payID, amount);
-                    break;
 
                 case 8:
-                    System.out.print("Enter Student ID: ");
-                    String checkID = scan.nextLine();
-                    registrar.checkStudentBalance(checkID);
+                    ui.handleTuitionFeeMenu();
                     break;
 
                 case 9:
@@ -116,12 +112,8 @@ public class Main {
                     break;
 
                 case 10:
-                    ui.handleDeptMenu();
-                    break;
-
-                case 0:
                     isRunning = false;
-                    System.out.println("System Shutting Down. GoodBye!");
+                    System.out.println("THANK YOU FOR USING MY CAMPUS REGISTRAR! GOODBYE!");
                     break;
                 default:
                     System.out.println("Invalid Selection. Try again");

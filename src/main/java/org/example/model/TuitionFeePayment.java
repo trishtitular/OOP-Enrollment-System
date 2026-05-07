@@ -32,4 +32,8 @@ public class TuitionFeePayment {
     public void setUnitsCompleted(int unitsCompleted) {
         this.unitsCompleted = unitsCompleted;
     }
+    @Override
+    public String toString(){
+        return String.format("Peso,.2f", balance);
+    }
 }

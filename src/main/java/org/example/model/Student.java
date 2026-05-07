@@ -6,8 +6,8 @@ public class Student extends Person {
     private TuitionFeePayment tuitionDeets;
     private int unitsCompleted;
 
-    public Student(String PersonName, String PersonID, String program){
-        super(PersonName, PersonID);
+    public Student(String PersonID, String PersonName, String program){
+        super(PersonID, PersonName);
         this.program = program;
         this.tuitionDeets = new TuitionFeePayment(0);
     }
@@ -30,9 +30,12 @@ public class Student extends Person {
     }
 
     public void displayStudent(){
-        System.out.println("Student ID: " + getPersonID());
-        System.out.println("Student Name: " + getPersonName());
-        System.out.println("Program: " + getProgram() + "\n");
+        System.out.println("-----------------------------------");
+        System.out.println("ID: " + getPersonID());
+        System.out.println("Name: " + getPersonName());
+        System.out.println("Program: " + getProgram());
+        System.out.println("Current Balance: " + tuitionDeets.toString());
+        System.out.println("-----------------------------------");
     }
     public int getUnitsCompleted() {
         return unitsCompleted;

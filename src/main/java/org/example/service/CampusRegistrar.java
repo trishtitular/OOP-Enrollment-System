@@ -2,7 +2,6 @@ package org.example.service;
 
 
 import org.example.model.*;
-import org.example.service.*;
 
 import java.util.*;
 
@@ -12,6 +11,7 @@ public class CampusRegistrar {
     private SectionReg sectionRegis;
     private DepartmentReg departmentRegis;
     private CourseReg courseRegis;
+    private InstructorReg instructorRegis;
     private TuitionFeeReg tuitionFeeRegis;
     private EnrollmentServiceReg enrollmentServiceRegis;
     private GraduationReg graduationRegis;
@@ -19,17 +19,17 @@ public class CampusRegistrar {
 
     public CampusRegistrar(StudentReg studentRegistration, SectionReg sectionRegistration,
                            DepartmentReg departmentRegistration, CourseReg courseRegistration,
-                           TuitionFeeReg tuitionFeeRegistration, EnrollmentServiceReg enrollmentServiceRegistration,GraduationReg graduationRegis) {
+                           InstructorReg instructorService, TuitionFeeReg tuitionFeeRegistration, EnrollmentServiceReg enrollmentServiceRegistration, GraduationReg graduationRegis) {
         this.studentRegis = studentRegistration;
         this.sectionRegis = sectionRegistration;
         this.departmentRegis = departmentRegistration;
         this.courseRegis = courseRegistration;
+        this.instructorRegis = instructorService;
         this.tuitionFeeRegis = tuitionFeeRegistration;
         this.enrollmentServiceRegis = enrollmentServiceRegistration;
         this.graduationRegis = graduationRegis;
     }
 
-    // --- STUDENT SERVICES ---
 
     public void saveStudent(Student student) {
         studentRegis.saveStudent(student);
@@ -145,8 +145,6 @@ public class CampusRegistrar {
         }
     }
 
-    // --- INSTITUTIONAL HIERARCHY ---
-
     public void displayHierarchy() {
         List<Department> departments = departmentRegis.displayAll();
         if (departments.isEmpty()) {
@@ -163,6 +161,28 @@ public class CampusRegistrar {
             return;
         }
         departmentRegis.saveDepartment(department);
-        System.out.println("System: Department " + department.getDepartmentName() + "successfully registered.");
+        System.out.println("Department " + department.getDepartmentName() + " successfully registered.");
+    }
+    public StudentReg getStudentRegis() {
+        return studentRegis;
+    }
+
+    public SectionReg getSectionRegis() {
+        return sectionRegis;
+    }
+
+    public CourseReg getCourseRegis() {
+        return courseRegis;
+    }
+
+    public DepartmentReg getDepartmentRegis() {
+        return departmentRegis;
+    }
+    public InstructorReg getInstructorRegis() {
+        return instructorRegis;
+    }
+
+    public TuitionFeeReg getTuitionFeeRegis() {
+        return tuitionFeeRegis;
     }
 }

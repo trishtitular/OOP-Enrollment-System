@@ -23,12 +23,34 @@ public class DepartmentRegistration implements DepartmentReg{
         }
 
         departments.add(department);
-        System.out.println(department.getDepartmentName() + "added successfully");
+        System.out.println(department.getDepartmentName() + " added successfully");
     }
 
     @Override
     public List<Department> displayAll(){
         return this.departments;
+    }
+
+    @Override
+    public void updateDepartment(String id, Department updatedDept) {
+        for (int i = 0; i < departments.size(); i++) {
+            if (departments.get(i).getDepartmentID().equalsIgnoreCase(id)) {
+                departments.set(i, updatedDept);
+                System.out.println("Department ID: " + id + " updated successfully.");
+                return;
+            }
+        }
+        System.out.println("Update failed: Department ID not found.");
+    }
+
+    @Override
+    public void deleteDepartment(String id) {
+        boolean removed = departments.removeIf(d -> d.getDepartmentID().equalsIgnoreCase(id));
+        if (removed) {
+            System.out.println("Department ID: " + id + " deleted from records.");
+        } else {
+            System.out.println("Delete failed: Department ID not found.");
+        }
     }
 
     @Override

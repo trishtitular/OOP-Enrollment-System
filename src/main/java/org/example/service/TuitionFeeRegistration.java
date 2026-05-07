@@ -27,7 +27,7 @@ public class TuitionFeeRegistration implements TuitionFeeReg{
 
         System.out.println("==================================================");
         System.out.println("Transaction completed for: " + student.getPersonName());
-        System.out.println("Remaining Balance: " + student.getTuitionDeets() + " Pesos");
+        System.out.println("Remaining Balance: " + String.format("%.2f", student.getTuitionDeets().getBalance()) + " Pesos");
 
         if (student.getTuitionDeets().getBalance() <= 0){
             int currentUnits = student.getTuitionDeets().getUnitsCompleted();

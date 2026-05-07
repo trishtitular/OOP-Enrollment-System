@@ -9,104 +9,277 @@ public class MenuHandler {
     private final CampusRegistrar registrar;
     private final SectionRegistration sectionService;
     private CourseRegistration courseService = new CourseRegistration();
+    private InstructorRegistration instructorService = new InstructorRegistration();
 
-    public MenuHandler(CampusRegistrar registrar,
-                       SectionRegistration sectionService,
-                       CourseRegistration courseService) {
-        this.scan = new Scanner(System.in);
-        this.registrar = registrar;
-        this.sectionService = sectionService;
-        this.courseService = courseService;
-    }
-
-    public MenuHandler(CampusRegistrar registrar, SectionReg sectionService) {
-
+    public MenuHandler(Scanner scan, CampusRegistrar registrar,
+                       SectionReg sectionService, CourseReg courseService,
+                       InstructorReg instructor) {
         this.scan = new Scanner(System.in);
         this.registrar = registrar;
         this.sectionService = (SectionRegistration) sectionService;
-        this.courseService = courseService;
+        this.courseService = (CourseRegistration) courseService;
+        this.instructorService =(InstructorRegistration)  instructorService;
     }
 
-    public void handleCourseMenu(){
+    public void handleCourseMenu() {
         System.out.println("\n--- [Course Management] ---");
         System.out.println("a. Add Course | b. View Catalog | c. Update Course | d. Remove Course");
-        System.out.println("Select an option: ");
+        System.out.print("Select an option: ");
         String option = scan.nextLine().toLowerCase();
 
-        if (option.equals("a")){
-            System.out.print("Enter Course ID: ");
-            String courseID = scan.nextLine();
-            System.out.print("Enter Course Name: ");
-            String courseName = scan.nextLine();
-            System.out.print("Enter Course Program: ");
-            String courseProg = scan.nextLine();
-            System.out.print("Enter Course Units: ");
-            int courseUnits = scan.nextInt();
-            registrar.saveCourse(new Course(courseID, courseName, courseProg, courseUnits));
-        } else if (option.equals("b")){
-            registrar.displayAllCourses(1350.0);
-        } else if (option.equals("c")){
-            System.out.print("Enter Course ID to Update: ");
-            String courseID = scan.nextLine();
-            System.out.print("Enter New Course Name: ");
-            String courseName = scan.nextLine();
-            System.out.print("Enter New Course Program: ");
-            String courseProg = scan.nextLine();
-            System.out.print("Enter New Course Units: ");
-            int courseUnits = scan.nextInt();
-            scan.nextLine();
-            registrar.updateCourse(new Course(courseID, courseName, courseProg, courseUnits));
-        }else if (option.equals("d")){
-            System.out.println("Enter Course ID to remove: ");
-            registrar.removeCourse(scan.nextLine());
-        }
+        switch (option){
+            case "a":
+                System.out.print("Enter Course ID: "); String id = scan.nextLine();
+                System.out.print("Enter Course Name: "); String name = scan.nextLine();
+                System.out.print("Enter Course Program: "); String prog = scan.nextLine();
+                System.out.print("Enter Course Units: ");
+                int units = scan.nextInt();
+                scan.nextLine(); // Buffer Flush
+                registrar.saveCourse(new Course(id, name, prog, units));
+                break;
 
+            case "b":
+                registrar.displayAllCourses(1350.0);
+                break;
+
+            case "c":
+                System.out.print("Enter Course ID to Update: "); String uId = scan.nextLine();
+                System.out.print("New Name: "); String uName = scan.nextLine();
+                System.out.print("New Program: "); String uProg = scan.nextLine();
+                System.out.print("New Units: ");
+                int uUnits = scan.nextInt();
+                scan.nextLine(); // Buffer Flush
+                registrar.updateCourse(new Course(uId, uName, uProg, uUnits));
+                break;
+            case "d":
+                System.out.print("Enter Course ID to remove: ");
+                registrar.removeCourse(scan.nextLine());
+                break;
+            default:
+                System.out.println("Invalid selection.");
+        }
     }
+
     public void handleSectionMenu() {
         System.out.println("\n--- [Section Management] ---");
-        System.out.println("a. Add | b. View All | c. Update | d. Delete"); // Added 'c'
+        System.out.println("a. Add | b. View All | c. Update | d. Delete");
         System.out.print("Select an option: ");
         String opt = scan.nextLine().toLowerCase();
 
-        if (opt.equals("a")) {
-            System.out.print("Enter Section Name: ");
-            String sectionName = scan.nextLine();
-            System.out.print("Enter Max Capacity: ");
-            int sectionCapacity = scan.nextInt();
-            scan.nextLine();
-            registrar.saveSection(new Section(sectionName, sectionCapacity, new ArrayList<>(), null));
-        } else if (opt.equals("b")) {
-            List<Section> list = sectionService.displayAll();
-            for (Section s : list) {
-                System.out.println("- " + s.getSectionName() + " (Section Max Capacity: " + s.getMaxCapacity() + ")");
-            }
-        } else if (opt.equals("c")) { // NEW UPDATE LOGIC
-            System.out.print("Enter OLD Section Name: ");
-            String oldName = scan.nextLine();
-            System.out.print("Enter NEW Section Name: ");
-            String newName = scan.nextLine();
-            System.out.print("Enter NEW Capacity: ");
-            int cap = scan.nextInt();
-            scan.nextLine();
-            sectionService.updateSection(oldName, new Section(newName, cap, new ArrayList<>(), null));
-        } else if (opt.equals("d")) {
-            System.out.print("Enter Name to delete: ");
-            sectionService.deleteSection(scan.nextLine());
+        switch (opt){
+            case"a":
+                System.out.print("Enter Section Name: "); String name = scan.nextLine();
+                System.out.print("Max Capacity: ");
+                int cap = scan.nextInt();
+                scan.nextLine(); // Buffer Flush
+                registrar.saveSection(new Section(name, cap, new ArrayList<>(), null));
+                break;
+            case "b":
+                List<Section> list = sectionService.displayAll();
+                if (list.isEmpty()) {
+                    System.out.println("No sections registered.");
+                } else {
+                    for (Section s : list) {
+                        System.out.println("- " + s.getSectionName() + " (Capacity: " + s.getMaxCapacity() + ")");
+                    }
+                }
+                break;
+            case "c":
+                System.out.print("Old Name: "); String old = scan.nextLine();
+                System.out.print("New Name: "); String nName = scan.nextLine();
+                System.out.print("New Capacity: ");
+                int nCap = scan.nextInt();
+                scan.nextLine(); // Buffer Flush
+                sectionService.updateSection(old, new Section(nName, nCap, new ArrayList<>(), null));
+                break;
+            case "d":
+                System.out.print("Name to delete: ");
+                sectionService.deleteSection(scan.nextLine());
+                break;
         }
     }
+    public void handleInstructorMenu(){
+        System.out.println("\n--- [Instructor Management] ---");
+        System.out.println("a. Register Instructor");
+        System.out.println("b. Display All Instructors");
+        System.out.println("c. Update Instructor");
+        System.out.println("d. Assign to Section");
+        System.out.print("Select an option: ");
+
+        String opt = scan.nextLine().toLowerCase();
+
+        switch (opt) {
+            case "a":
+                System.out.print("ID: "); String id = scan.nextLine();
+                System.out.print("Name: "); String name = scan.nextLine();
+                System.out.print("Expertise: "); String exp = scan.nextLine();
+                instructorService.save(new Instructor(name, id, exp));
+                break;
+
+            case "b":
+                List<Instructor> list = instructorService.displayAll();
+                if (list.isEmpty()) {
+                    System.out.println("No instructor records found.");
+                } else {
+                    for (Instructor i : list) {
+                        i.displayInstructor(); // Calls the new display method
+                    }
+                }
+                break;
+
+            case "c":
+                System.out.print("Enter Instructor ID to Update: ");
+                String updateId = scan.nextLine();
+                Instructor found = instructorService.findByInstructorID(updateId);
+
+                if (found != null) {
+                    System.out.print("Enter New Name (leave blank to keep current): ");
+                    String nName = scan.nextLine();
+                    System.out.print("Enter New Courses: ");
+                    String nCourse = scan.nextLine();
+
+                    found.updateInstructorDetails(nName, nCourse);
+                } else {
+                    System.out.println("Instructor not found.");
+                }
+                break;
+
+            case "d":
+                System.out.print("Instructor ID: "); String insId = scan.nextLine();
+                System.out.print("Section Name: "); String secN = scan.nextLine();
+
+                Instructor insObj = instructorService.findByInstructorID(insId);
+                Section secObj = sectionService.findBySectionName(secN);
+
+                if (insObj != null && secObj != null) {
+                    instructorService.assignInstructorToSection(insObj, secObj);
+                } else {
+                    System.out.println("Error: Linking failed. Check ID and Section Name.");
+                }
+                break;
+
+            default:
+                System.out.println("Invalid selection.");
+                break;
+        }
+    }
+    public void handleTuitionFeeMenu(){
+        System.out.println("\n--- [Tuition & Financial Management] ---");
+        System.out.println("a. Assess Tuition (Add Units) | b. Process Payment | c. Check Balance");
+        System.out.print("Select: ");
+        String opt = scan.nextLine().toLowerCase();
+
+        switch (opt) {
+            case "a":
+                System.out.print("Student ID: "); String sId = scan.nextLine();
+                System.out.print("Units to add: "); int u = scan.nextInt(); scan.nextLine();
+                Student stud = ((StudentRegistration)registrar.getStudentRegis()).findByStudentID(sId);
+                if (stud != null) registrar.calculateTuitionFee(stud, u);
+                else System.out.println("Student not found.");
+                break;
+            case "b":
+                System.out.print("Student ID: "); String pId = scan.nextLine();
+                System.out.print("Payment Amount: "); double amt = scan.nextDouble(); scan.nextLine();
+                registrar.processPayment(pId, amt);
+                break;
+            case "c":
+                System.out.print("Student ID: "); String cId = scan.nextLine();
+                registrar.checkStudentBalance(cId);
+                break;
+        }
+    }
+
     public void handleDeptMenu() {
-        System.out.println("\n--- [Department Management] ---");
-        System.out.println("a. Register Dept | b. View Hierarchy");
-        System.out.print("Select an option: ");
-        String opt = scan.nextLine().toLowerCase();
+        System.out.println("\n--- [ DEPARTMENT MANAGEMENT ] ---");
+        System.out.println("1. Register New Department ");
+        System.out.println("2. View Institutional Hierarchy");
+        System.out.println("3. Update Department Details");
+        System.out.println("4. Remove Department )1");
+        System.out.println("------------------------------------------------------");
+        System.out.println("5. Assign Section to Department");
+        System.out.println("6. Assign Course to Department");
+        System.out.println("7. Assign Instructor to Department");
+        System.out.println("0. Return to Main Menu");
+        System.out.print("Selection: ");
 
-        if (opt.equals("a")) {
-            System.out.print("Enter Department ID: "); String deptID = scan.nextLine();
-            System.out.print("Dept Name: "); String deptName = scan.nextLine();
-            registrar.saveDept(new Department(deptID, deptName, new ArrayList<>(), new ArrayList<>()));
-        } else {
-            registrar.displayHierarchy();
+        String opt = scan.nextLine();
+
+        switch (opt) {
+            case "1": // CREATE
+                System.out.print("Enter Dept ID: "); String dId = scan.nextLine();
+                System.out.print("Enter Dept Name: "); String dName = scan.nextLine();
+
+                registrar.saveDept(new Department(dId, dName, new ArrayList<>(), new ArrayList<>(), new ArrayList<>()));
+                break;
+
+            case "2": // READ
+                registrar.displayHierarchy();
+                break;
+
+            case "3": // UPDATE
+                System.out.print("Enter Dept ID to Update: "); String updateId = scan.nextLine();
+                System.out.print("Enter New Name: "); String nName = scan.nextLine();
+                // We create a temporary object to hold the updates
+                Department updatedDept = new Department(updateId, nName, new ArrayList<>(), new ArrayList<>(), new ArrayList<>());
+                ((DepartmentRegistration)registrar.getDepartmentRegis()).updateDepartment(updateId, updatedDept);
+                break;
+
+            case "4": // DELETE
+                System.out.print("Enter Dept ID to Delete: "); String delId = scan.nextLine();
+                ((DepartmentRegistration)registrar.getDepartmentRegis()).deleteDepartment(delId);
+                break;
+
+            case "5": // ASSIGN SECTION
+                System.out.print("Dept ID: "); String sDeptId = scan.nextLine();
+                System.out.print("Section Name: "); String sName = scan.nextLine();
+
+                Department deptS = ((DepartmentRegistration)registrar.getDepartmentRegis()).findByDepartmentID(sDeptId);
+                Section sec = sectionService.findBySectionName(sName);
+
+                if (deptS != null && sec != null) {
+                    deptS.addSection(sec);
+                    System.out.println("Success: Section " + sName + " linked to " + deptS.getDepartmentName());
+                } else {
+                    System.out.println("Error: Department or Section not found.");
+                }
+                break;
+
+            case "6": // ASSIGN COURSE
+                System.out.print("Dept ID: "); String cDeptId = scan.nextLine();
+                System.out.print("Course ID: "); String cId = scan.nextLine();
+
+                Department deptC = ((DepartmentRegistration)registrar.getDepartmentRegis()).findByDepartmentID(cDeptId);
+                Course cou = courseService.findByCourseID(cId);
+
+                if (deptC != null && cou != null) {
+                    deptC.addCourse(cou);
+                    System.out.println("Success: Course " + cId + " linked to " + deptC.getDepartmentName());
+                } else {
+                    System.out.println("Error: Department or Course not found.");
+                }
+                break;
+
+            case "7": // ASSIGN INSTRUCTOR
+                System.out.print("Dept ID: "); String iDeptId = scan.nextLine();
+                System.out.print("Instructor ID: "); String insId = scan.nextLine();
+
+                Department deptI = ((DepartmentRegistration)registrar.getDepartmentRegis()).findByDepartmentID(iDeptId);
+                Instructor ins = instructorService.findByInstructorID(insId);
+
+                if (deptI != null && ins != null) {
+                    deptI.addInstructor(ins);
+                    System.out.println("Success: Instructor " + ins.getPersonName() + " assigned to " + deptI.getDepartmentName());
+                } else {
+                    System.out.println("Error: Department or Instructor not found.");
+                }
+                break;
+
+            case "0":
+                return;
+
+            default:
+                System.out.println("Invalid Selection.");
+                break;
         }
     }
-
 }
