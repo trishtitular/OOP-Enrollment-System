@@ -12,7 +12,7 @@ public class EnrollmentServiceRegistration implements EnrollmentServiceReg {
         // 1. Check Financial Status (Using your logic)
         if (student.getTuitionDeets().getBalance() > 0) {
             System.out.println("Status: DENIED");
-            System.out.println("└── Reason: Outstanding Balance of $" +
+            System.out.println("└── Reason: Outstanding Balance of PHP " +
                     String.format("%.2f", student.getTuitionDeets().getBalance()));
         }
         // 2. Check Section Capacity
