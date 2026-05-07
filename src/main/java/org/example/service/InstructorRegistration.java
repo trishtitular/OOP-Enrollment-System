@@ -11,7 +11,7 @@ public class InstructorRegistration implements InstructorReg {
     @Override
     public void save(Instructor instructor){
         instructors.add(instructor);
-        System.out.println("Instructor Name: " + instructor.getPersonName()+ " record saved");
+        System.out.println("Instructor ID: " + instructor.getPersonName()+ " record saved");
     }
 
     @Override
