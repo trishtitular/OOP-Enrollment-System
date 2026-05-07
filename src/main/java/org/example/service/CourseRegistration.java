@@ -1,39 +1,62 @@
 package org.example.service;
 
 import org.example.model.Course;
-import org.example.model.Student;
-
 import java.util.ArrayList;
+import java.util.*;
 
-public class CourseRegistration {
-    private ArrayList<Course> courseLists = new ArrayList<>();
 
+public class CourseRegistration implements CourseReg{
+    private final ArrayList<Course> courseLists = new ArrayList<>();
+    private String courseID;
+
+    // allow to add course
+    @Override
     public void saveCourse(Course course){
         courseLists.add(course);
+        System.out.println(course.getCourseName() + " registered successfully");
     }
 
-    public void displayAll(){
+    @Override
+    public void displayAll(double pricePerUnit){
+        if (courseLists.isEmpty()){
+            System.out.println("No courses have been registered yet");
+            return;
+        }
+        System.out.println("List of Available Courses");
         for (Course c: courseLists){
-            System.out.println("Course ID: " + c.getCourseID());
-            System.out.println("Course Name: " + c.getCourseName());
-            System.out.println("Course Program: " + c.getProgram());
+            double totalCost = c.getUnits() * pricePerUnit;
+            System.out.println("Course ID: " +c.getCourseID() + " | Course Name: " + c.getCourseName() +
+                    " | Course Units: " + c.getUnits() + " | Course Tuition Fee:  " +  totalCost + " Pesos");
         }
     }
 
-    public void updateCourse(Course course){
-        for (int i = 0; i < courseLists.size(); i++){
-            if(courseLists.get(1).getCourseID()==(course.getCourseID())){
-                courseLists.set(i,course);
+    @Override
+    public void updateCourse(Course updateCourse) {
+        for (int i = 0; i < courseLists.size(); i++) {
+            if (courseLists.get(i).getCourseID().equalsIgnoreCase(updateCourse.getCourseID())) {
+                courseLists.set(i, updateCourse);
+                System.out.println(updateCourse.getCourseID() + " updated successfully");
+                return;
             }
         }
+        System.out.println("Error: Course ID is not registered yet");
     }
-
-    public void removeCourse(Course course){
-        for (int i = 0; i < courseLists.size(); i++){
-            if(courseLists.get(1).getCourseID()==(course.getCourseID())){
-                courseLists.remove(i);
+    @Override
+    public void removeCourse(String courseID){
+        boolean removed = courseLists.removeIf(c -> c.getCourseID().equalsIgnoreCase(courseID));
+            if (removed) {
+                System.out.println(courseID + " removed successfully");
+            } else {
+                System.out.println("Error: " + courseID + " is not registered yet");
             }
         }
+    @Override
+    public Course findByCourseID(String id){
+        for (Course c : courseLists){
+             if(c.getCourseID().equalsIgnoreCase(id)){
+             return c;
+             }
+        }
+        return null;
     }
-
 }

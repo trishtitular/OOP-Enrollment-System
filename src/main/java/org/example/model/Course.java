@@ -1,42 +1,48 @@
 package org.example.model;
 
-public class Course extends Person {
+public class Course {
     private String courseID;
     private String courseName;
-    private String program;
-    public Course(){
+    private String courseProgram;
+    private int units;
 
-    }
-    public Course(String courseID,String courseName, String program){
+    public Course(String courseID, String courseName, String courseProgram, int units) {
         this.courseID = courseID;
         this.courseName = courseName;
-        this.program = program;
+        this.courseProgram = courseProgram;
+        this.units = units;
     }
-    public String getCourseID(){
+
+    // Getters and Setters
+    public String getCourseID() {
         return courseID;
     }
     public void setCourseID(String courseID) {
         this.courseID = courseID;
     }
-    public String getCourseName(){
+    public String getCourseName() {
         return courseName;
     }
     public void setCourseName(String courseName) {
         this.courseName = courseName;
     }
-    public String getProgram(){
-        return program;
+    public String getCourseProgram() {
+        return courseProgram;
     }
-    public void setProgram(String program) {
-        this.program = program;
+    public void setCourseProgram(String courseProgram) {
+        this.courseProgram = courseProgram;
     }
-    public void display(){
-        System.out.println("Course ID:" + " " + getCourseID());
-        System.out.println("Course Name:" + " " + getCourseName());
-        System.out.println("Program:" + " " + getProgram() + "\n");
+    public int getUnits() {
+        return units;
     }
-    @Override
-    public void mainTask() {
-        System.out.println("Course Registered");
+    public void setUnits(int units) {
+        this.units = units;
+    }
+
+    public void displayCourse() {
+        System.out.println("Course ID: " + courseID);
+        System.out.println("Course Name: " + courseName);
+        System.out.println("Program: " + courseProgram);
+        System.out.println("Units: " + units + "\n");
     }
 }
