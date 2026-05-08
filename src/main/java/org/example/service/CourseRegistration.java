@@ -9,7 +9,7 @@ public class CourseRegistration implements CourseReg{
     private final ArrayList<Course> courseLists = new ArrayList<>();
     private String courseID;
 
-    // allow to add course
+
     @Override
     public void saveCourse(Course course){
         courseLists.add(course);

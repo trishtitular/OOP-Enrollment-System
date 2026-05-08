@@ -43,7 +43,7 @@ public class Main {
             System.out.println("\n--- MAIN MENU---");
             System.out.println("1. Register New Student");
             System.out.println("2. Display All Students");
-            System.out.println("3. Course Management (Add/View/Update//Display/Remove)");
+            System.out.println("3. Course Management (Add/View/Update/Display/Remove)");
             System.out.println("4. Section Management (Add Section/View/Update/Display/Remove)");
             System.out.println("5. Instructor Management(Register/Assign/View)");
             System.out.println("6. Department Management");
