@@ -9,18 +9,18 @@ public class EnrollmentServiceRegistration implements EnrollmentServiceReg {
     public void registerStudentInSection(Section section, Student student) {
         System.out.println("\n========== ENROLLMENT PROCESSING ==========");
 
-        // 1. Check Financial Status (Using your logic)
+
         if (student.getTuitionDeets().getBalance() > 0) {
             System.out.println("Status: DENIED");
             System.out.println("└── Reason: Outstanding Balance of PHP " +
                     String.format("%.2f", student.getTuitionDeets().getBalance()));
         }
-        // 2. Check Section Capacity
+
         else if (section.getStudentList().size() >= section.getMaxCapacity()) {
             System.out.println("Status: DENIED");
             System.out.println("└── Reason: Section [" + section.getSectionName() + "] is at Max Capacity (" + section.getMaxCapacity() + ")");
         }
-        // 3. Successful Enrollment
+
         else {
             section.getStudentList().add(student);
             System.out.println("Status: SUCCESS");
@@ -74,7 +74,7 @@ public class EnrollmentServiceRegistration implements EnrollmentServiceReg {
                     System.out.println("       └── (No students enrolled)");
                 } else {
                     for (Student s : sec.getStudentList()) {
-                        // Check if student has paid while listing them
+
                         String payStatus = (s.getTuitionDeets().getBalance() <= 0) ? "[PAID]" : "[PENDING]";
                         System.out.println("       └── Student: " + payStatus + " " + s.getPersonName());
                     }

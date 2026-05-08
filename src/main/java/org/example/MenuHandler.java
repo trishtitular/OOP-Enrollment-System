@@ -34,7 +34,7 @@ public class MenuHandler {
                 System.out.print("Enter Course Program: "); String prog = scan.nextLine();
                 System.out.print("Enter Course Units: ");
                 int units = scan.nextInt();
-                scan.nextLine(); // Buffer Flush
+                scan.nextLine();
                 registrar.saveCourse(new Course(id, name, prog, units));
                 break;
 
@@ -44,11 +44,11 @@ public class MenuHandler {
 
             case "c":
                 System.out.print("Enter Course ID to Update: "); String uId = scan.nextLine();
-                System.out.print("New Name: "); String uName = scan.nextLine();
-                System.out.print("New Program: "); String uProg = scan.nextLine();
-                System.out.print("New Units: ");
+                System.out.print("Enter New Name: "); String uName = scan.nextLine();
+                System.out.print("Enter New Program: "); String uProg = scan.nextLine();
+                System.out.print("Enter New Units: ");
                 int uUnits = scan.nextInt();
-                scan.nextLine(); // Buffer Flush
+                scan.nextLine();
                 registrar.updateCourse(new Course(uId, uName, uProg, uUnits));
                 break;
             case "d":
@@ -69,9 +69,9 @@ public class MenuHandler {
         switch (opt){
             case"a":
                 System.out.print("Enter Section Name: "); String name = scan.nextLine();
-                System.out.print("Max Capacity: ");
+                System.out.print("EnterMax Capacity: ");
                 int cap = scan.nextInt();
-                scan.nextLine(); // Buffer Flush
+                scan.nextLine();
                 registrar.saveSection(new Section(name, cap, new ArrayList<>(), null));
                 break;
             case "b":
@@ -85,15 +85,15 @@ public class MenuHandler {
                 }
                 break;
             case "c":
-                System.out.print("Old Name: "); String old = scan.nextLine();
-                System.out.print("New Name: "); String nName = scan.nextLine();
-                System.out.print("New Capacity: ");
+                System.out.print("Enter Old Name: "); String old = scan.nextLine();
+                System.out.print("Enter New Name: "); String nName = scan.nextLine();
+                System.out.print("Enter New Capacity: ");
                 int nCap = scan.nextInt();
-                scan.nextLine(); // Buffer Flush
+                scan.nextLine();
                 sectionService.updateSection(old, new Section(nName, nCap, new ArrayList<>(), null));
                 break;
             case "d":
-                System.out.print("Name to delete: ");
+                System.out.print("Enter Name to delete: ");
                 sectionService.deleteSection(scan.nextLine());
                 break;
         }
@@ -110,9 +110,9 @@ public class MenuHandler {
 
         switch (opt) {
             case "a":
-                System.out.print("ID: "); String id = scan.nextLine();
-                System.out.print("Name: "); String name = scan.nextLine();
-                System.out.print("Expertise: "); String exp = scan.nextLine();
+                System.out.print("Enter Instructor ID: "); String id = scan.nextLine();
+                System.out.print("Enter Instructor Name: "); String name = scan.nextLine();
+                System.out.print("Enter Expertise: "); String exp = scan.nextLine();
                 instructorService.save(new Instructor(name, id, exp));
                 break;
 
@@ -122,7 +122,7 @@ public class MenuHandler {
                     System.out.println("No instructor records found.");
                 } else {
                     for (Instructor i : list) {
-                        i.displayInstructor(); // Calls the new display method
+                        i.displayInstructor();
                     }
                 }
                 break;
@@ -133,7 +133,7 @@ public class MenuHandler {
                 Instructor found = instructorService.findByInstructorID(updateId);
 
                 if (found != null) {
-                    System.out.print("Enter New Name (leave blank to keep current): ");
+                    System.out.print("Enter New Name: ");
                     String nName = scan.nextLine();
                     System.out.print("Enter New Courses: ");
                     String nCourse = scan.nextLine();
@@ -145,8 +145,8 @@ public class MenuHandler {
                 break;
 
             case "d":
-                System.out.print("Instructor ID: "); String insId = scan.nextLine();
-                System.out.print("Section Name: "); String secN = scan.nextLine();
+                System.out.print("Enter Instructor ID: "); String insId = scan.nextLine();
+                System.out.print("Enter Section Name: "); String secN = scan.nextLine();
 
                 Instructor insObj = instructorService.findByInstructorID(insId);
                 Section secObj = sectionService.findBySectionName(secN);
@@ -171,19 +171,19 @@ public class MenuHandler {
 
         switch (opt) {
             case "a":
-                System.out.print("Student ID: "); String sId = scan.nextLine();
-                System.out.print("Units to add: "); int u = scan.nextInt(); scan.nextLine();
+                System.out.print("Enter Student ID: "); String sId = scan.nextLine();
+                System.out.print("Enter Units to add: "); int u = scan.nextInt(); scan.nextLine();
                 Student stud = ((StudentRegistration)registrar.getStudentRegis()).findByStudentID(sId);
                 if (stud != null) registrar.calculateTuitionFee(stud, u);
                 else System.out.println("Student not found.");
                 break;
             case "b":
-                System.out.print("Student ID: "); String pId = scan.nextLine();
-                System.out.print("Payment Amount: "); double amt = scan.nextDouble(); scan.nextLine();
+                System.out.print("Enter Student ID: "); String pId = scan.nextLine();
+                System.out.print("Enter Payment Amount: "); double amt = scan.nextDouble(); scan.nextLine();
                 registrar.processPayment(pId, amt);
                 break;
             case "c":
-                System.out.print("Student ID: "); String cId = scan.nextLine();
+                System.out.print("Enter Student ID: "); String cId = scan.nextLine();
                 registrar.checkStudentBalance(cId);
                 break;
         }
@@ -205,46 +205,46 @@ public class MenuHandler {
         String opt = scan.nextLine();
 
         switch (opt) {
-            case "1": // CREATE
+            case "1":
                 System.out.print("Enter Dept ID: "); String dId = scan.nextLine();
                 System.out.print("Enter Dept Name: "); String dName = scan.nextLine();
 
                 registrar.saveDept(new Department(dId, dName, new ArrayList<>(), new ArrayList<>(), new ArrayList<>()));
                 break;
 
-            case "2": // READ
+            case "2":
                 registrar.displayHierarchy();
                 break;
 
-            case "3": // UPDATE
+            case "3":
                 System.out.print("Enter Dept ID to Update: "); String updateId = scan.nextLine();
                 System.out.print("Enter New Name: "); String nName = scan.nextLine();
-                // We create a temporary object to hold the updates
+
                 Department updatedDept = new Department(updateId, nName, new ArrayList<>(), new ArrayList<>(), new ArrayList<>());
                 ((DepartmentRegistration)registrar.getDepartmentRegis()).updateDepartment(updateId, updatedDept);
                 break;
 
-            case "4": // DELETE
+            case "4":
                 System.out.print("Enter Dept ID to Delete: "); String delId = scan.nextLine();
                 ((DepartmentRegistration)registrar.getDepartmentRegis()).deleteDepartment(delId);
                 break;
 
-            case "5": // ASSIGN SECTION
-                System.out.print("Dept ID: "); String sDeptId = scan.nextLine();
-                System.out.print("Section Name: "); String sName = scan.nextLine();
+            case "5":
+                System.out.print("Enter Dept ID: "); String sDeptId = scan.nextLine();
+                System.out.print("Enter Section Name: "); String sName = scan.nextLine();
 
                 Department deptS = ((DepartmentRegistration)registrar.getDepartmentRegis()).findByDepartmentID(sDeptId);
                 Section sec = sectionService.findBySectionName(sName);
 
                 if (deptS != null && sec != null) {
                     deptS.addSection(sec);
-                    System.out.println("Success: Section " + sName + " linked to " + deptS.getDepartmentName());
+                    System.out.println("Section " + sName + " linked to " + deptS.getDepartmentName());
                 } else {
                     System.out.println("Error: Department or Section not found.");
                 }
                 break;
 
-            case "6": // ASSIGN COURSE
+            case "6":
                 System.out.print("Dept ID: "); String cDeptId = scan.nextLine();
                 System.out.print("Course ID: "); String cId = scan.nextLine();
 
@@ -253,22 +253,22 @@ public class MenuHandler {
 
                 if (deptC != null && cou != null) {
                     deptC.addCourse(cou);
-                    System.out.println("Success: Course " + cId + " linked to " + deptC.getDepartmentName());
+                    System.out.println("Course " + cId + " linked to " + deptC.getDepartmentName());
                 } else {
                     System.out.println("Error: Department or Course not found.");
                 }
                 break;
 
-            case "7": // ASSIGN INSTRUCTOR
-                System.out.print("Dept ID: "); String iDeptId = scan.nextLine();
-                System.out.print("Instructor ID: "); String insId = scan.nextLine();
+            case "7":
+                System.out.print("Enter Dept ID: "); String iDeptId = scan.nextLine();
+                System.out.print("Enter Instructor ID: "); String insId = scan.nextLine();
 
                 Department deptI = ((DepartmentRegistration)registrar.getDepartmentRegis()).findByDepartmentID(iDeptId);
                 Instructor ins = instructorService.findByInstructorID(insId);
 
                 if (deptI != null && ins != null) {
                     deptI.addInstructor(ins);
-                    System.out.println("Success: Instructor " + ins.getPersonName() + " assigned to " + deptI.getDepartmentName());
+                    System.out.println("Instructor " + ins.getPersonName() + " assigned to " + deptI.getDepartmentName());
                 } else {
                     System.out.println("Error: Department or Instructor not found.");
                 }

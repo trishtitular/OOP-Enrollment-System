@@ -61,6 +61,28 @@ public class CampusRegistrar {
             System.out.println("Deletion failed: no record found for Student ID: " + id);
         }
     }
+    public void saveSection(Section section) {
+        sectionRegis.saveSection(section);
+    }
+
+    public void saveCourse(Course course) {
+        courseRegis.saveCourse(course);
+    }
+
+    public void displayAllCourses(double pricePerUnit) {
+
+        double price = TuitionFeeRegistration.PRICE_PER_UNIT;
+        System.out.println("\n========== COURSE CATALOG ==========");
+        courseRegis.displayAll(price);
+        System.out.println("====================================");
+    }
+    public void updateCourse(Course course){
+        courseRegis.updateCourse(course);
+    }
+
+    public void removeCourse(String courseID){
+        courseRegis.removeCourse(courseID);
+    }
 
     public void calculateTuitionFee(Student s, int courseUnits) {
         double fee = tuitionFeeRegis.calculateTuitionFee(courseUnits, 0);
@@ -102,30 +124,6 @@ public class CampusRegistrar {
         }
     }
 
-
-    public void saveCourse(Course course) {
-        courseRegis.saveCourse(course);
-    }
-
-    public void displayAllCourses(double pricePerUnit) {
-
-        double price = TuitionFeeRegistration.PRICE_PER_UNIT;
-        System.out.println("\n========== COURSE CATALOG ==========");
-        courseRegis.displayAll(price);
-        System.out.println("====================================");
-    }
-    public void updateCourse(Course course){
-        courseRegis.updateCourse(course);
-    }
-
-    public void removeCourse(String courseID){
-        courseRegis.removeCourse(courseID);
-    }
-
-    public void saveSection(Section section) {
-        sectionRegis.saveSection(section);
-    }
-
     public void enrollStudent(Section sectionName, String studentID) {
         Section section = sectionRegis.findBySectionName(sectionName.getSectionName());
         Student student = ((StudentRegistration) studentRegis).findByStudentID(studentID);
@@ -148,7 +146,7 @@ public class CampusRegistrar {
     public void displayHierarchy() {
         List<Department> departments = departmentRegis.displayAll();
         if (departments.isEmpty()) {
-            System.out.println("Notice: No Departments found in registry.");
+            System.out.println(" No Departments found in registry.");
             return;
         }
         enrollmentServiceRegis.displayDepartmentHierarchy(departments);
@@ -157,7 +155,7 @@ public class CampusRegistrar {
     public void saveDept(Department department) {
         Department existing = departmentRegis.findByDepartmentID(department.getDepartmentID());
         if (existing != null) {
-            System.out.println("Error: Department ID'" + department.getDepartmentID() + "' already exists.");
+            System.out.println("Error: Department ID " + department.getDepartmentID() + " already exists.");
             return;
         }
         departmentRegis.saveDepartment(department);
