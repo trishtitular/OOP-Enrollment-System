@@ -45,7 +45,7 @@ public class Main {
             System.out.println("2. Display All Students");
             System.out.println("3. Course Management (Add/View/Update/Display/Remove)");
             System.out.println("4. Section Management (Add Section/View/Update/Display/Remove)");
-            System.out.println("5. Instructor Management(Register/Assign/View)");
+            System.out.println("5. Instructor Management(Register/View/Update/Assign)");
             System.out.println("6. Department Management");
             System.out.println("7. Enroll Student in Section");
             System.out.println("8. Tuition & Financial Management");

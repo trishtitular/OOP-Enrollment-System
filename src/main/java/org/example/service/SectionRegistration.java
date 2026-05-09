@@ -13,7 +13,7 @@ public class SectionRegistration implements SectionReg {
     @Override
     public void saveSection(Section section){
         sections.add(section);
-        System.out.println(section.getSectionName() + "saved successfully");
+        System.out.println(section.getSectionName() + " saved successfully");
     }
 
     @Override

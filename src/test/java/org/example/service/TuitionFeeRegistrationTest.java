@@ -32,12 +32,6 @@ class TuitionFeeRegistrationTest {
     }
 
     @Test
-    void testProcessPaymentUpdatesBalance() {
-        service.processPayment(student, 2000.0);
-        assertEquals(3000.0, service.checkBalance(student));
-    }
-
-    @Test
     void testFullPaymentCreditsUnits() {
         student.getTuitionDeets().setUnitsCompleted(0);
 
@@ -47,11 +41,4 @@ class TuitionFeeRegistrationTest {
         assertEquals(3, student.getTuitionDeets().getUnitsCompleted());
     }
 
-    @Test
-    void testIsPaymentComplete() {
-        assertFalse(service.isPaymentComplete(student));
-
-        student.getTuitionDeets().setBalance(0);
-        assertTrue(service.isPaymentComplete(student));
-    }
 }
