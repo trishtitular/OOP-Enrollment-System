@@ -81,6 +81,6 @@ public class EnrollmentServiceRegistration implements EnrollmentServiceReg {
                 }
             }
         }
-        System.out.println("\n=============================================");
+        System.out.println("\n==============================================");
     }
 }

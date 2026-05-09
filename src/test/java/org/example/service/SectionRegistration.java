@@ -17,7 +17,7 @@ class SectionRegistrationTest {
     @BeforeEach
     void setUp() {
         service = new SectionRegistration();
-        testSection = new Section("IT1A", 25, null, null);
+        testSection = new Section("IT1A", 30, null, null);
     }
 
     @Test
