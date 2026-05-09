@@ -38,21 +38,21 @@ Person, Section, Student and TuitionFeePayment
  - MenuHandler: Another controller that manages sub-menus and user input to make Main much cleaner.
 ---
 **Key Features**
-1. Student & Course Management
-    Registration: Add students and course with unique IDs and specific academic programs.
+1. Student, Course Section and Instructor Management
+    Registration: Allows to add,display,update and remove entities.
     Catalog: Maintain a full course catalog including unit values and program requirements.
     Tuition Calculation: Automatically calculates fees at a rate of 1,350.00 Pesos per unit.
 
-2. Departmental Hierarchy & Linkage
+3. Departmental Hierarchy & Linkage
     Institutional Mapping: Link Sections, Courses, and Instructors to specific Departments. 
     Hierarchy Tool: Generate a visual tree view showing the organization from the Department level down to the 
     individual enrolled students.
 
-3. Tuition Fee & Academic Operations
+4. Tuition Fee & Academic Operations
      Enrollment Gatekeeping: Checks student balance and section capacity before allowing enrollment.  
      Tuition Payments: Process payments and track outstanding balances.
 
-4. Graduation Audit:
+5. Graduation Audit:
     Conduct unit audits to determine if a student has met their required unit goal and completed the TuitionFee.
 
 ---
