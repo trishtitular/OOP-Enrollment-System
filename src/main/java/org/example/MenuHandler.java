@@ -194,7 +194,7 @@ public class MenuHandler {
         System.out.println("2. View Institutional Hierarchy");
         System.out.println("3. Update Department Details");
         System.out.println("4. Remove Department )1");
-        System.out.println("------------------------------------------------------");
+        System.out.println("-------------------------------------------------");
         System.out.println("5. Assign Section to Department");
         System.out.println("6. Assign Course to Department");
         System.out.println("7. Assign Instructor to Department");
