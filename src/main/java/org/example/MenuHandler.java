@@ -18,7 +18,6 @@ public class MenuHandler {
         this.registrar = registrar;
         this.sectionService = (SectionRegistration) sectionService;
         this.courseService = (CourseRegistration) courseService;
-        this.instructorService =(InstructorRegistration)  instructorService;
     }
 
     public void handleCourseMenu() {

@@ -13,7 +13,7 @@ class TuitionFeePaymentTest {
 
     @BeforeEach
     void setUp() {
-        // Correct assignment to the class-level variable
+
         payment = new TuitionFeePayment(10000.00);
     }
 
@@ -25,14 +25,14 @@ class TuitionFeePaymentTest {
     }
 
     @Test
-    @DisplayName("Should update balance correctly via setter")
+
     void testSetBalance() {
         payment.setBalance(5500.50);
         assertEquals(5500.50, payment.getBalance());
     }
 
     @Test
-    @DisplayName("Should track units completed independently")
+
     void testUnitsCompletedLogic() {
         payment.setUnitsCompleted(15);
         assertEquals(15, payment.getUnitsCompleted());
@@ -43,7 +43,7 @@ class TuitionFeePaymentTest {
     }
 
     @Test
-    @DisplayName("Should format toString with Peso prefix and two decimals")
+
     void testToStringFormatting() {
         payment.setBalance(1234.56);
         String result = payment.toString();
@@ -52,7 +52,7 @@ class TuitionFeePaymentTest {
     }
 
     @Test
-    @DisplayName("Should store and retrieve total tuition fee")
+
     void testTotalTuitionFee() {
         payment.setTotalTuitionFee(50000.00);
         assertEquals(50000.00, payment.getTotalTuitionFee());

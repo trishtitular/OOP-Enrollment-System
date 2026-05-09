@@ -33,7 +33,7 @@ public class TuitionFeeRegistration implements TuitionFeeReg{
             int currentUnits = student.getTuitionDeets().getUnitsCompleted();
             student.getTuitionDeets().setUnitsCompleted(currentUnits + 3);
 
-            System.out.println("STATUS: Payment Accredited. 3 units credited to record");
+            System.out.println("STATUS: Payment Accredited units credited to record");
         }
         System.out.println("==================================================");
     }
